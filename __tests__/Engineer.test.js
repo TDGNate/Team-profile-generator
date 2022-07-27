@@ -36,4 +36,9 @@ describe('check if Engineer Methods work', () => {
     const callGithub = Nate.getGithub()
     expect(callGithub).toBe('TDGNate')
   })
+
+  it('check role', () => {
+    const role = Nate.getRole()
+    expect(role).toBe('Engineer')
+  })
 })

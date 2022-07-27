@@ -29,4 +29,9 @@ describe('Test to see if Employee methods work', () => {
     const callEmail = Nate.getEmail();
     expect(callEmail).toBe('itsNzte@gmail.com')
   })
+
+  it('check role', () => {
+    const role = Nate.getRole()
+    expect(role).toBe('Employee')
+  })
 })
