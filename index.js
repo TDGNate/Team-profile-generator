@@ -46,18 +46,18 @@ const engineerQuestions = [
   },
   {
     type: 'input',
-    message: "Enginner's ID:",
-    name: 'enginnerId'
+    message: "Engineer's ID:",
+    name: 'engineerId'
   },
   {
     type: 'input',
-    message: "Enginner's Email:",
-    name: 'enginnerEmail'
+    message: "Engineer's Email:",
+    name: 'engineerEmail'
   },
   {
     type: 'input',
-    message: "Enginner's Github:",
-    name: 'enginnerGithub'
+    message: "Engineer's Github:",
+    name: 'engineerGithub'
   }
 ]
 
@@ -128,7 +128,7 @@ async function startUp() {
         const pickEngineer = await inquirer.prompt(engineerQuestions)
           
         // create engineer and store data into state variable
-        let engineer = new Engineer(pickEngineer.engineerName, pickEngineer.enginnerId, pickEngineer.enginnerEmail, pickEngineer.enginnerGithub)
+        let engineer = new Engineer(pickEngineer.engineerName, pickEngineer.engineerId, pickEngineer.engineerEmail, pickEngineer.engineerGithub)
         engineerState += `${engineer.getCard()}\n`
         break;
         
