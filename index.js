@@ -10,7 +10,10 @@ const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
 
-// questions 
+// importing src html layout 
+const htmlLayout = require('./src/html-layout')
+
+// Manager questions 
 const managerQuestions = [
   {
     type: 'input',
@@ -34,6 +37,7 @@ const managerQuestions = [
   }
 ]
 
+// Engineer questions 
 const engineerQuestions = [
   {
     type: 'input',
@@ -57,6 +61,7 @@ const engineerQuestions = [
   }
 ]
 
+// Intern Questions 
 const internQuestions = [
   {
     type: 'input',
@@ -80,22 +85,75 @@ const internQuestions = [
   }
 ]
 
+// menu questions 
+const menu = [
+  {
+    type: 'list',
+    message: 'Menu: Want to add another User or end here?',
+    choices: ['Enginner', 'Intern', 'Close'],
+    name: 'menuList'
+  }
+]
+
+// Storing the state of the cards after user input 
 let managerState = '';
 let engineerState = '';
 let internState = '';
 
-function startUp() {
-  inquirer.prompt(managerQuestions)
-    .then(data => {
-      console.log(data)
-      let isChoosing = true;
+// When application runs, show manager quetions, then menu 
+async function startUp() {
 
-      // Create Manager 
+  // prompt user for manager data 
+  await inquirer.prompt(managerQuestions)
+    .then(data => {
+
+      // Create Manager and store data into state variable
       const manager = new Manager(data.managerName, data.managerId, data.managerEmail, data.managerOfficeNum);
       managerState += `${manager.getCard()}\n`
     })
+
+    // set status to running 
+  let isChoosing = true;
   
-  
+  // check if user is still wants to add
+  while (isChoosing) {
+
+    // prompt user for next role to add 
+    const chooseRole = await inquirer.prompt(menu).then(data => { return data.menuList });
+
+    switch (chooseRole) {
+
+      // if user picks enginner 
+      case 'Enginner':
+        const pickEngineer = await inquirer.prompt(engineerQuestions)
+          
+        // create engineer and store data into state variable
+        let engineer = new Engineer(pickEngineer.engineerName, pickEngineer.enginnerId, pickEngineer.enginnerEmail, pickEngineer.enginnerGithub)
+        engineerState += `${engineer.getCard()}\n`
+        break;
+        
+      // if user picks intern
+      case 'Intern':
+        const pickIntern = await inquirer.prompt(internQuestions)
+
+        // create Intern and store data into state variable
+        let intern = new Intern(pickIntern.internName, pickIntern.internId, pickIntern.internEmail, pickIntern.internSchool)
+        internState += `${intern.getCard()}\n`
+        break;
+        
+      // if user is done 
+      case 'Close':
+        isChoosing = false;
+        break;
+    }
+  }
+
+    // call html-layout file to return generated html file 
+    let html = htmlLayout(managerState, engineerState, internState)
+
+    // create html file in the dist folder 
+    fs.writeFile('./dist/index.html', html, err => { err ? console.log(err) : console.log('Generated File!') })
 }
 
 startUp()
+  
