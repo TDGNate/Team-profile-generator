@@ -6,6 +6,8 @@ This is a command line application that allows the user to input data for their 
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
+<img src="./assets/imgs/sample.png" alt="html page screenshot">
+
 ## Table Of Contents
 
 - [Usage](#usage)
