@@ -22,7 +22,7 @@ This is a command line application that allows the user to input data for their 
 
 If everything is set up correctly, then the user can start and run the application, with prompts asking the user for their team's data. The main purpose is to create a visual styled page for the user's team after they have input their team's data.
 
-Video how to use app: https://drive.google.com/file/d/1xa3vf8d_L1PTPjRcN9ElnEURzP8oLhUg/view
+Video how to use app: https://drive.google.com/file/d/1e_oOE-y8ZqaWJIC6wUOWIJ3gARiu6NY_/view
 
 ## Install
 
