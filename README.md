@@ -26,7 +26,7 @@ Video how to use app: https://drive.google.com/file/d/1e_oOE-y8ZqaWJIC6wUOWIJ3gA
 
 ## Install
 
-Install Node js, and Inquirer, and run `node index.js` to start the application.
+Install Node js, and Inquirer, and run `npm start` which will run node index.js to start the application.
 
 ## Contributing
 
